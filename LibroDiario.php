@@ -42,7 +42,6 @@ class LibroDiario
     $ladoLinea = ObtenerLlaves($partida, $ladoLinea);
     $ladoContrario = ObtenerLlaves($partida, $ladoContrario);
     
-    // TODO Esta línea debe devolver los indices de las lineas que no son de la cuenta
     $lineasCuentasContrarias = array_filter($ladoContrario, function ($key) use ($ladoLinea){return !in_array($key, $ladoLinea);});
 
     $mensaje .= (count($lineasCuentasContrarias) === 1)? $partida[$lineasCuentasContrarias[0]][1]: "Varias Cuentas";

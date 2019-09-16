@@ -53,7 +53,6 @@ class SistemaContable {
           $this->mayor[$cuenta['nombre']]['movimientos'][] = [
             "partida" => $subIndice,
             "cantidad" => $movimiento,
-            // TODO Esta función no sirve todavía
             "descripcion"=>$this->diario->Descripcion($partida, $cuenta['nombre'])
           ];
           $saldo += $movimiento;
@@ -112,14 +111,9 @@ class SistemaContable {
         
         $columna = ($cuenta['tipo']==='Activo')? true: false;
         $columnaContraria = !$columna;
-        
-        if ($movimiento['cantidad'] < 0 && $columna) {
-          $pdf->Cell($distribucion['valores'], 1, number_format(abs($movimiento['cantidad']), 2), 0, 0, 'R');
-          $pdf->Cell($distribucion['valores'], 1, '', 0, 0, 'R');
-        } else {
-          $pdf->Cell($distribucion['valores'], 1, '', 0, 0, 'R');
-          $pdf->Cell($distribucion['valores'], 1, number_format(abs($movimiento['cantidad']), 2), 0, 0, 'R');
-        }
+        $align = (($movimiento['cantidad']>0 && $columna) || ($movimiento['cantidad']<0 && !$columna))? 'L': 'R';
+
+        $pdf->Cell($distribucion['valores']*2, 1, number_format(abs($movimiento['cantidad']), 2), 0, 0, $align);
         $pdf->Cell($distribucion['valores'], 1, '', 0, 1, 'R');
       }
       $pdf->SetTextColor(255, 0, 0);
@@ -144,7 +138,7 @@ class SistemaContable {
       $pdf->SetFontSize(18);
       $pdf->SetTextColor(255, 0, 0);
       $pdf->Cell(0,1, "ERROR", 0, 1, 'C');
-      $pdf->Cell(0,1, number_format($this->balance['error'], 2), 0, 1, 'C');
+      $pdf->Cell(0,1, $this->balance['error'], 0, 1, 'C');
       $pdf->SetTextColor(0, 0, 0);
     }
     foreach ($this->balance['cuentas'] as $nombreCuenta => $cuenta) {
@@ -165,7 +159,7 @@ class SistemaContable {
     $pdf->SetTextColor(0, 0, 0);
     $pdf->Cell($distribucion['valores'], 1, number_format($this->balance['totales'][0], 2), 'B', 0, 'R');
     $pdf->Cell($distribucion['valores'], 1, number_format($this->balance['totales'][1], 2), 'B', 1, 'R');
-    $pdf->Output('I', "Libros", true);
+    $pdf->Output('I', "Libro Mayor y Balance", true);
   }
 }
 

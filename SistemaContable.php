@@ -22,7 +22,6 @@ class SistemaContable {
     $this->CrearLibroMayor();
     $this->CrearBalance();
   }
-  // TODO Termianr de crear diario para implementar el por en el libro mayor
   function CrearDiario() {
     $this->diario = new LibroDiario($this->csv);
   }
@@ -79,11 +78,11 @@ class SistemaContable {
       }
     }
     $this->balance['totales'] = $totales;
-    if ($totales[0] != $totales[1]) {
+    if (round($totales[0], 2) != round($totales[1], 2)) {
       $mayor = ($totales[0]<$totales[1]) ? $totales[1] : $totales[0];
       $menor = ($totales[0]<$totales[1]) ? $totales[0] : $totales[1];
-      $diferencia = ($mayor-$menor) /2;
-      $this->balance['error'] = "LOS SALDOS NO CUADRAN POR: {$diferencia}.";
+      $diferencia = round(($mayor-$menor) /2, 2);
+      $this->balance['error'] = "LOS SALDOS NO CUADRAN POR: Q. {$diferencia}";
     }
   }
   function CrearPDF() {
@@ -114,14 +113,15 @@ class SistemaContable {
         $align = (($movimiento['cantidad']>0 && $columna) || ($movimiento['cantidad']<0 && !$columna))? 'L': 'R';
 
         $pdf->Cell($distribucion['valores']*2, 1, number_format(abs($movimiento['cantidad']), 2), 0, 0, $align);
-        $pdf->Cell($distribucion['valores'], 1, '', 0, 1, 'R');
+        $pdf->Cell($distribucion['valores'], 1, '', 0, 0, 'R');
+        $pdf->Ln(0.8);
       }
       $pdf->SetTextColor(255, 0, 0);
       $pdf->Cell($distribucion['numero']+$distribucion['titulo'], 1, 'SALDO ACTUAL', 0, 0, 'R');
       $pdf->SetTextColor(0, 0, 0);
-      $pdf->Cell($distribucion['valores'], 1, '', 'B', 0, 'R');
-      $pdf->Cell($distribucion['valores'], 1, '', 'B', 0, 'R');
-      $pdf->Cell($distribucion['valores'], 1, number_format($cuenta['SALDO ACTUAL'], 2), 'B', 1, 'R');
+      $pdf->Cell($distribucion['valores'], 1, '', 'TB', 0, 'R');
+      $pdf->Cell($distribucion['valores'], 1, '', 'TB', 0, 'R');
+      $pdf->Cell($distribucion['valores'], 1, number_format($cuenta['SALDO ACTUAL'], 2), 'TB', 1, 'R');
     }unset($cuenta); unset($nombre);
 
     $distribucion = [
@@ -142,23 +142,24 @@ class SistemaContable {
       $pdf->SetTextColor(0, 0, 0);
     }
     foreach ($this->balance['cuentas'] as $nombreCuenta => $cuenta) {
-      $pdf->SetFont('Arial', '', 14);
+      $pdf->SetFont('Arial', '', 12);
       $pdf->Cell($distribucion['numero'], 1, $cuenta['numero'], 0, 0, 'C');
       $pdf->Cell($distribucion['titulo'], 1, $nombreCuenta, 0, 0, 'L');
       
       if ($cuenta['tipo']==='Activo') {
         $pdf->Cell($distribucion['valores'], 1, number_format($cuenta['saldo'], 2), 0, 0, 'R');
-        $pdf->Cell($distribucion['valores'], 1, '', 0, 1, 'R');
+        $pdf->Cell($distribucion['valores'], 1, '', 0, 0, 'R');
       }else {
         $pdf->Cell($distribucion['valores'], 1, '', 0, 0, 'R');
-        $pdf->Cell($distribucion['valores'], 1, number_format($cuenta['saldo'], 2), 0, 1, 'R');
+        $pdf->Cell($distribucion['valores'], 1, number_format($cuenta['saldo'], 2), 0, 0, 'R');
       }
+      $pdf->Ln(0.8);
     }
     $pdf->SetTextColor(255, 0, 0);
     $pdf->Cell($distribucion['numero']+$distribucion['titulo'], 1, 'SUMAS IGUALES', 0, 0, 'R');
     $pdf->SetTextColor(0, 0, 0);
-    $pdf->Cell($distribucion['valores'], 1, number_format($this->balance['totales'][0], 2), 'B', 0, 'R');
-    $pdf->Cell($distribucion['valores'], 1, number_format($this->balance['totales'][1], 2), 'B', 1, 'R');
+    $pdf->Cell($distribucion['valores'], 1, number_format($this->balance['totales'][0], 2), 'TB', 0, 'R');
+    $pdf->Cell($distribucion['valores'], 1, number_format($this->balance['totales'][1], 2), 'TB', 1, 'R');
     $pdf->Output('I', "Libro Mayor y Balance", true);
   }
 }

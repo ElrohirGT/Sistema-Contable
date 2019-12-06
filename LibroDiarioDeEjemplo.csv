@@ -1,0 +1,75 @@
+﻿Día 1,Partida 1,,
+1,Caja," Q3,655.00 ",
+2,Bancos," Q58,900.00 ",
+3,IVA por Cobrar," Q12,600.30 ",
+4,Mercaderías," Q77,862.50 ",
+5,Alquileres Pagados por Anticipado," Q7,800.00 ",
+6,Gastos Organización," Q4,665.00 ",
+7,Mobiliario y Equipo," Q15,470.00 ",
+8,Proveedores,," Q23,000.00 "
+9,Acreedores,," Q5,000.00 "
+10,IVA por Pagar sobre Facturas Especiales,, Q303.60 
+11,ISR por Pagar sobre Facturas Especiales,, Q151.80 
+12,Capital Contable,," Q152,497.40 "
+,Inventario Inicial," Q180,952.80 "," Q180,952.80 "
+Día 3,Partida 2,,
+1,Caja," Q7,288.96 ",
+13,IVA por Pagar,, Q780.96 
+14,Ventas,," Q6,508.00 "
+,Facturas 1-18," Q7,288.96 "," Q7,288.96 "
+Día 8,Partida 3,,
+2,Bancos,," Q4,760.00 "
+3,IVA por Cobrar, Q510.00 ,
+15,Compras," Q4,250.00 ",
+,Cheque 1 Banco Frijol," Q4,760.00 "," Q4,760.00 "
+Día 11,Partida 4,,
+16,Sueldos Pagados por Anticipado, Q300.00 ,
+1,Caja,, Q300.00 
+,Ernestina del Valle, Q300.00 , Q300.00 
+Día 13,Partida 5,,
+17,Clientes," Q5,958.40 ",
+13,IVA por Pagar,, Q638.40 
+14,Ventas,," Q5,320.00 "
+,Facturas 19-25," Q5,958.40 "," Q5,958.40 "
+Día 18,Partida 6,,
+8,Proveedores," Q5,000.00 ",
+1,Caja,," Q5,000.00 "
+,Recibo 14," Q5,000.00 "," Q5,000.00 "
+Día 22,Partida 7,,
+9,Acreedores," Q3,000.00 ",
+1,Caja,," Q3,000.00 "
+,Recibo 15," Q3,000.00 "," Q3,000.00 "
+Día 23,Partida 8,,
+1,Caja," Q6,059.20 ",
+13,IVA por Pagar,, Q649.20 
+14,Ventas,," Q5,410.00 "
+,Facturas 19-25," Q6,059.20 "," Q6,059.20 "
+Día 25,Partida 9,,
+2,Bancos," Q7,000.00 ",
+1,Caja,," Q7,000.00 "
+,Banco Frijol No.1," Q7,000.00 "," Q7,000.00 "
+Día 27,Partida 10,,
+17,Clientes,," Q3,500.00 "
+1,Caja," Q3,500.00 ",
+,Recibo No.1," Q3,500.00 "," Q3,500.00 "
+Día 30,Partida 11,,
+18,Sueldos Oficina," Q6,200.00 ",
+19,Sueldos Sala de Ventas," Q5,300.00 ",
+20,Bonificacion Incentivo," Q2,250.00 ",
+21,Cuota Patronal IGSS," Q1,457.05 ",
+22,Cuota Laboral y Patronal por Pagar,," Q2,012.50 "
+16,Sueldos Pagados por Anticipado,, Q300.00 
+2,Bancos,," Q12,894.55 "
+,Pago de Sueldos," Q15,207.05 "," Q15,207.05 "
+Día 30,Partida 12,,
+1,Caja,," Q4,703.16 "
+2,Bancos," Q4,703.16 ",
+,Se dejan 500 en caja," Q4,703.16 "," Q4,703.16 "
+Día 30,Partida 13,,
+11,IVA por Pagar," Q2,068.56 ",
+3,IVA por Cobrar,," Q2,068.56 "
+,Regularización del IVA," Q2,068.56 "," Q2,068.56 "
+Día 30,Partida 14,,
+10,IVA por Pagar sobre Facturas Especiales, Q303.60 ,
+2,Bancos,, Q303.60 
+,Regularización del IVA, Q300.00 , Q303.60 

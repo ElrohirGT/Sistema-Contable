@@ -4,11 +4,11 @@ require './SistemaContable.php';
 
 $res = $_FILES['archivo'];
 
-$file = "Z:\\".$_FILES['archivo']['name'];
-$type = strtolower(pathinfo($file,PATHINFO_EXTENSION));
+$path = $_FILES['archivo']['tmp_name'];
+$type = strtolower(pathinfo($res['name'],PATHINFO_EXTENSION));
 
 if ($type === 'csv') {
-  $csv = array_map('str_getcsv', file($file));
+  $csv = array_map('str_getcsv', file($path));
   $SistemaContable = new SistemaContable($csv);
   // echo "DIARIO";
   // var_dump($SistemaContable->csv);

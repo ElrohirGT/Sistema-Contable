@@ -1,7 +1,7 @@
 <?php
 
 require './fpdf.php';
-require './LibroDiario.php';
+require './LibroDiario.class.php';
 
 setlocale(LC_MONETARY, 'es_GT');
 
